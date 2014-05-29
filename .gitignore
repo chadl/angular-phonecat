@@ -1,3 +1,4 @@
+vagrant/.vagrant
 logs/*
 !.gitkeep
 node_modules/

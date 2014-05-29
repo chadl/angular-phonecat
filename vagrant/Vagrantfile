@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+
+  config.vm.define "nodejs" do |nodejs|
+    nodejs.vm.box = "precise64"
+    nodejs.vm.box_url = "http://files.vagrantup.com/precise64.box"
+    nodejs.vm.forward_port 8000, 4567
+    nodejs.vm.host_name = "angularjs.dev"
+    
+    nfs_setting = RUBY_PLATFORM =~ /darwin/ || RUBY_PLATFORM =~ /linux/
+    config.vm.synced_folder "./../", "/var/www/angular", id: "vagrant-root" , :nfs => nfs_setting
+    
+    nodejs.vm.provision :shell, :path => "provision.sh"
+  end
+
+end
