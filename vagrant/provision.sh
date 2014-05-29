@@ -5,8 +5,11 @@ then
   cat /vagrant/bashrc.append.txt >> /home/vagrant/.bashrc
   echo "GENERAL APT-GET UPDATE"
   apt-get -qq update
+
   echo "INSTALL NODEJS"
-  apt-get -qq -y install nodejs 
+  apt-get -qq -y install nodejs
+  ln -s /usr/bin/nodejs /usr/sbin/node
+  
   echo "INSTALL NPM"
   apt-get -qq -y install npm
   echo "INSTALL GIT"
@@ -17,6 +20,7 @@ then
   apt-get -qq -y install tree
   echo "INSTALL UNZIP"
   apt-get -qq -y install unzip
+  
 
   touch /home/vagrant/already-installed-flag
   echo "Done!"
